@@ -1,0 +1,36 @@
+useDynLib(GOSim,OAWrapper)
+importFrom(org.Hs.eg.db, org.Hs.egGO, org.Hs.egORGANISM)
+importFrom(cluster, silhouette)
+import(RBGL)
+import(graph)
+import(flexmix)
+import(Matrix)
+importFrom(corpcor, pseudoinverse)
+import(topGO)
+
+export(
+getOffsprings,
+getAncestors,
+getParents,
+getChildren,
+setEvidenceLevel,
+setOntology,
+getGOInfo,
+filterGO,
+getGeneSim,
+getGeneFeaturesPrototypes,
+getGeneSimPrototypes,
+selectPrototypes,
+setEnrichmentFactors,
+getGOGraph,
+getGOGraphsGenes,
+calcICs,
+getMinimumSubsumer,
+getDisjCommAnc,
+getTermSim,
+evaluateClustering,
+GOenrichment,
+getGeneFeatures, 
+calc.diffusion.kernel, 
+load.diffusion.kernel
+)

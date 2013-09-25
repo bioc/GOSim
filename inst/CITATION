@@ -1,0 +1,14 @@
+     citHeader("To cite package 'GOSim' in publications use:")
+     
+     desc <- packageDescription("GOSim")
+     year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date)
+     vers <- paste("R package version", desc$Version)
+     
+     citEntry(entry="article",
+              title = "GOSim - An R-Package for Computation of Information Theoretic GO Similarities Between Terms and Gene Products",
+              author = personList(as.person("Holger Froehlich")),
+              journal="BMC Bioinformatics",
+              number=8,
+              pages="166",                                  
+              year = "2007",              
+              textVersion = "Holger Froehlich, N. Speer, A. Poustka, Tim Beissbarth (2007). GOSim - An R-Package for Computation of Information Theoretic GO Similarities Between Terms and Gene Products. BMC Bioinformatics, 8:166")
