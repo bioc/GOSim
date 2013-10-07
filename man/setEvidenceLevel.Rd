@@ -102,9 +102,9 @@ In case there does not exist an annotation package so far, the user can optional
 }
 \seealso{\code{\link{setOntology}}, \code{\link{calcICs}}, \code{\link{filterGO}}, \code{\link{getGOInfo}} }
 \examples{
-	#\donttest{
+	\donttest{
 	setEvidenceLevel("all")
-	#} # the default behavior	
+	} # the default behavior	
 }
 \keyword{ file }% at least one, from doc/KEYWORDS
 

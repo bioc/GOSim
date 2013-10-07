@@ -27,7 +27,7 @@ getGOGraphsGenes(genelist, prune=Inf)
 \note{ directly calls the function \code{GOGraph} in the "GOstats" library 
 }
 \examples{
-#\donttest{	
+\donttest{	
  	G=getGOGraph(c("GO:0006955","GO:0007584"))
  	if(require(igraph)){
  		g=igraph.from.graphNEL(G) 		 
@@ -36,6 +36,6 @@ getGOGraphsGenes(genelist, prune=Inf)
  		g = igraph.from.graphNEL(Gs[[1]])
  		plot(g, vertex.label=V(g)$name) # plot the first of both GO graphs
  	} 
-#}
+}
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

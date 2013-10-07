@@ -26,12 +26,12 @@ getGOInfo(geneIDs)
 }
 \seealso{ \code{\link{setOntology}} }
 \examples{
-#\donttest{
+\donttest{
  if(require(annotate)){
  	setOntology("BP")
  	getGOInfo(c("207","7494"))
  }
-#}
+}
 }
 \keyword{ file }% at least one, from doc/KEYWORDS
 

@@ -26,10 +26,10 @@ calcICs(DIR=".")
 }
 \seealso{\code{\link{setEvidenceLevel}}}
 \examples{		
-#\donttest{  	
+\donttest{  	
 	setEvidenceLevel("IMP")
 	setOntology("CC", loadIC=FALSE) # important: setOntology assumes that the IC file already exists. To prevent an error message we need the second argument
 	calcICs()  
-#} # --> this may take some time ...
+} # --> this may take some time ...
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

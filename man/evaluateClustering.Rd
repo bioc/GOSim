@@ -26,7 +26,7 @@ evaluateClustering(clust, Sim)
 \author{Holger Froehlich}
 \seealso{ \code{\link{getGeneSimPrototypes}}, \code{\link{getGeneSim}}, \code{\link{getTermSim}}, \code{\link{GOenrichment}} }
 \examples{
-#\donttest{	
+\donttest{	
 	setOntology("BP")
 	gomap <- get("gomap",env=GOSimEnv)
 	allgenes = sample(names(gomap), 1000) # suppose these are all genes
@@ -46,6 +46,6 @@ evaluateClustering(clust, Sim)
 	# investigate cluster 1 further	
 	if(require(topGO))
 		GOenrichment(genesOfInterest[cl == 1], allgenes, cutoff=0.05) # print out what cluster 1 is about
-#}
+}
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

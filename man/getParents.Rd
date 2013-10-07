@@ -19,8 +19,8 @@ List with entry names for each GO term. Each entry contains a character vector w
 }
 \seealso{ \code{\link{getOffsprings}}, \code{\link{getChildren}}, \code{\link{getAncestors}}, \code{\link{setOntology}} }
 \examples{
- #\donttest{
+ \donttest{
  getParents()
- #}
+ }
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

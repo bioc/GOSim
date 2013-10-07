@@ -20,8 +20,8 @@ vector with the offspring GO terms.
 }
 \seealso{ \code{\link{getChildren}}, \code{\link{getParents}}, \code{\link{getAncestors}}, \code{\link{setOntology}} }
 \examples{
- #\donttest{
+ \donttest{
  getOffsprings()
- #}
+ }
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

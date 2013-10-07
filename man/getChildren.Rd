@@ -22,8 +22,8 @@ vector with the direct children GO terms.
 \seealso{ \code{\link{getOffsprings}}, \code{\link{getParents}},
   \code{\link{getAncestors}}, \code{\link{setOntology}} }
 \examples{
-#\donttest{
+\donttest{
 	getChildren()
-#}
+}
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

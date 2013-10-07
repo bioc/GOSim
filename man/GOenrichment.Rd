@@ -29,13 +29,13 @@ Adrian Alexa, J\"org Rahnenf\"uhrer, Thomas Lengauer: Improved scoring of functi
 \author{Holger Froehlich}
 \seealso{\code{\link{evaluateClustering}} }
 \examples{
-	#\donttest{			
+	\donttest{			
 	if(require(org.Hs.eg.db) & require(topGO)){
 		allgenes = sample(keys(org.Hs.egGO), 1000) # suppose these are all genes
 		allpvalues = runif(1000) # an these are their pvalues
 		names(allpvalues) = allgenes	
 		GOenrichment(allpvalues[allpvalues<0.05], allpvalues) # GO enrichment analysis using Kolmogorov-Smirnov test
 	}
-	#}	
+	}	
 }
 \keyword{ file }% at least one, from doc/KEYWORDS
