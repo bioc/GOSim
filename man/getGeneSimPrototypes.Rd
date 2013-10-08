@@ -44,9 +44,9 @@ List with items
   \code{\link{selectPrototypes}}, \code{\link{getGeneSim}},
   \code{\link{getTermSim}}, \code{\link{setOntology}}  }
 \examples{
-#\donttest{ may take some time ...
+\donttest{ #may take some time ...
  proto=selectPrototypes(n=5) # --> returns a character vector of 5 genes with the highest number of annotations
  getGeneSimPrototypes(c("207","208"),prototypes=proto, similarityTerm="Resnik")
-#}
+}
 }
 \keyword{ file }% at least one, from doc/KEYWORDS

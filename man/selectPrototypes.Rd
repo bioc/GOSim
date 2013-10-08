@@ -55,10 +55,10 @@ number of clusters in the range 2,...,n.
 \note{ The result depends on the currently set ontology ("BP","MF","CC").}
 \seealso{ \code{\link{getGeneFeaturesPrototypes}}, \code{\link{getGeneSimPrototypes}}, \code{\link{setOntology}}  }
 \examples{
-#\donttest{ # takes too much time in the R CMD check
+\donttest{ # takes too much time in the R CMD check
  proto=selectPrototypes(n=5) # --> returns a character vector of 5 genes with the highest number of annotations 
  feat=getGeneFeaturesPrototypes(c("207","7494"),prototypes=proto,pca=FALSE) # --> compute feature vectors 
  selectPrototypes(data=feat$features,method="pca") # ... and PCA projection
-#}
+}
 }
 \keyword{ file }% at least one, from doc/KEYWORDS
