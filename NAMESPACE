@@ -7,6 +7,7 @@ import(flexmix)
 import(Matrix)
 importFrom(corpcor, pseudoinverse)
 import(topGO)
+importFrom(Rcpp, evalCpp)
 
 export(
 getOffsprings,
