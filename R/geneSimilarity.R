@@ -164,11 +164,11 @@ getGSim<-function(anno1, anno2, similarity="funSimMax", similarityTerm="JiangCon
 			print(ker)			
 			cat("optimal assignment:\n")
 			if(NROW(res$assignment) > 1)
-				res$assignment = res$assignment[rowSums(res$assignment) > 0, ,drop=F]
+				res$assignment = res$assignment[rowSums(res$assignment) > 0, ,drop=FALSE]
 			if(NROW(res$assignment) > 1)
-				res$assignment = res$assignment[,colSums(res$assignment) > 0, drop=F]
+				res$assignment = res$assignment[,colSums(res$assignment) > 0, drop=FALSE]
 			if(NROW(res$assignment) > 1 && NROW(res$assignment) > 1){
-				res$assignment = res$assignment[1:length(anno1), 1:length(anno2), drop=F]
+				res$assignment = res$assignment[1:length(anno1), 1:length(anno2), drop=FALSE]
 				dimnames(res$assignment) = list(anno1, anno2)
 			}
 			print(res$assignment)
@@ -241,7 +241,7 @@ getGeneSim<-function(genelist1, genelist2=NULL, similarity="funSimMax", similari
 		}			
 		if(normalization){			
 			Ker = normalize.kernel(Ker, method=method)
-			if(any(Ker > 1, na.rm=T)) # this has been updated
+			if(any(Ker > 1, na.rm=TRUE)) # this has been updated
 				warning("Similarity matrix contains values > 1! This may happen with simlarity='funSimMax', if one gene's GO annotation is a complete subset of another gene's GO annotation.")
 			Ker[Ker>1] = 1 # can happen with similarity funSimMax in cases where one GO annotation is subset of another one
 		}			
@@ -271,7 +271,7 @@ getGeneSim<-function(genelist1, genelist2=NULL, similarity="funSimMax", similari
 				}
 			}
 		}			
-		if(any(Ker > 1, na.rm=T))
+		if(any(Ker > 1, na.rm=TRUE))
 			warning("Similarity matrix contains values > 1! This may happen with simlarity='funSimMax', if one gene's GO annotation is a complete subset of another gene's GO annotation.")
 		Ker[Ker>1] = 1 # can happen with similarity funSimMax in cases where one GO annotation is subset of another one
 	}

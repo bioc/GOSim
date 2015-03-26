@@ -3,7 +3,7 @@
 //#include <R_ext/Utils.h>
 //#include <R.h>
 //#include <Rdefines.h>
-//#include <R_ext/Rdynload.h>
+#include <R_ext/Rdynload.h>
 #include <vector>
 #include <string>
 #include <map>
@@ -40,4 +40,18 @@ RcppExport SEXP OAWrapper(SEXP Rpre, SEXP mod){
 
   	hungarian_free(&prob);
   	return Rcpp::List::create(Rcpp::Named("score", cost), Rcpp::Named("assignment", assignment));
+}
+
+
+extern "C"{
+R_CallMethodDef callMethods[]  = {
+  {"OAWrapper", (DL_FUNC) &OAWrapper, 2},
+  {NULL, NULL, 0}
+};
+
+void
+R_init_GOSim(DllInfo *info)
+{
+   R_registerRoutines(info, NULL, callMethods, NULL, NULL);
+}
 }

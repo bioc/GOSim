@@ -20,6 +20,7 @@
 \newcommand{\Rpackage}[1]{{\textit{#1}}}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 \author{Holger Fr\"ohlich}
 
 \title{The \emph{GOSim} package}
@@ -121,13 +122,13 @@ sim(t,t') = IC_{share}(t,t') = \frac{1}{|DisjCommAnc|}\sum_{t\in DisjCommAnc} IC
 \end{equation}
 Likewise, Jiang-Conraths's and Lin's measures can be extended as well by replacing $IC_{ms}(t,t')$ by $IC_{share}(t,t')$.
 <<results=verbatim, eval=TRUE>>=
-getTermSim(c("GO:0007166","GO:0007267","GO:0007584","GO:0007165","GO:0007186"),method="CoutoResnik",verbose=FALSE)
+getTermSim(c("GO:0007166","GO:0007267"),method="CoutoResnik",verbose=FALSE)
 @
 
 Finally, it should be mentioned that also the depth and density enriched term similarity by Couto et al. \citep{Couto2003FuSSiMeg} has been integrated into \emph{GOSim}:
 <<results=verbatim, eval=TRUE>>=
 setEnrichmentFactors(alpha=0.5,beta=0.3)
-getTermSim(c("GO:0007166","GO:0007267","GO:0007584","GO:0007165","GO:0007186"),method="CoutoEnriched",verbose=FALSE)
+getTermSim(c("GO:0007166","GO:0007267"),method="CoutoEnriched",verbose=FALSE)
 @
 
 Since version 1.1.5 \emph{GOSim} contains several new similarity concepts, which are based on so-called diffusion kernel techniques \citep{Lerman2007ManifoldEmbedding} rather than on the information theoretic ideas presented before. For using these similarity measures it is necessary to pre-compute a diffusion kernel on the Gene Ontology graph 
@@ -210,7 +211,7 @@ achieve a higher similarity we may further $sim_{gene}$ divide \ref{eq:OAKernel}
 
 In our example, using Lin's GO term similarity measure the following assignments yielding a corresponding similarity matrix are found:
 <<results=verbatim>>=
-getGeneSim(c("8614","2852"),similarity="OA",similarityTerm="Lin",avg=FALSE, verbose=TRUE)
+getGeneSim(c("8614","2852"),similarity="OA",similarityTerm="Lin",avg=FALSE, verbose=FALSE)
 @
 
 Note the difference to a gene similarity that is just based on the maximum GO term similarity and to a gene similarity that is based on the average of best matching GO terms:
@@ -250,9 +251,9 @@ features = getGeneFeatures(c("8614","2852"))
 
 \paragraph{Embeddings via GO Term Similarities to Prototype Genes}
 
-This approach is due to \cite{FroeGO05,FroeSpeerGOKer06}. The idea is to define a feature vector for each gene by its pairwise GO term similarity to certain prototype genes, i.e. the prototype genes form a (nonorthogonal) basis, and each gene is defined relative to this basis. The prototype genes can eithed be defined a priori or one can use one of the heuristics implemented in the function {\tt selectPrototypes}. The default behavior is to select the 250 best annotated genes, i.e. which have been annotated with GO terms most often, but here we just use 5 for computational reasons:
+This approach is due to \cite{FroeGO05,FroeSpeerGOKer06}. The idea is to define a feature vector for each gene by its pairwise GO term similarity to certain prototype genes, i.e. the prototype genes form a (nonorthogonal) basis, and each gene is defined relative to this basis. The prototype genes can eithed be defined a priori or one can use one of the heuristics implemented in the function {\tt selectPrototypes}. The default behavior is to select the 250 best annotated genes, i.e. which have been annotated with GO terms most often, but here we just use 3 for computational reasons:
 <<results=verbatim,eval=TRUE>>=
-proto = selectPrototypes(n=5,verbose=FALSE)
+proto = selectPrototypes(n=3,verbose=FALSE)
 @
 
 We now calculate for each gene $g$ feature vectors $\phi(g)$  by using their similarity to all prototypes $p_1,...,p_n$:
@@ -261,36 +262,36 @@ We now calculate for each gene $g$ feature vectors $\phi(g)$  by using their sim
 \end{equation}
 Here $sim'$ by default is the maximum pairwise GO term similarity. Alternatively, one can use other similarity measures for $sim'$ as well. These similarity measures can by itself again be combined with arbitrary GO term similarity concepts. The default is the Jiang-Conrath term similarity.
 
-Because the feature vectors are very high-dimensional we usually perform a principal component analysis (PCA) to project the data into a lower dimensional subspace:
-<<results=verbatim,eval=TRUE>>=
-PHI = getGeneFeaturesPrototypes(genes,prototypes=proto,verbose=FALSE)
+Because the feature vectors are very high-dimensional we usually perform a principal component analysis (PCA) to project the data into a lower dimensional subspace. The results are not shown here due to long computation time.
+<<results=verbatim,eval=FALSE>>=
+PHI = getGeneFeaturesPrototypes(genes,prototypes=proto, verbose=FALSE)
 @
 
 This uses the above define prototypes to calculate feature vectors and performs a PCA afterwards. The number of principal components is chosen such that at least 95\% of the total variance in feature space can be explained (this is a relatively conservatve criterion). 
 
 We can now plot our genes in the space spanned by the first 2 principal components to get an impression of the relative  "position" of the genes to each other in the feature space (see Fig. \ref{Fig:GOPCAExample}). The feature vectors are normalized to Euclidian norm 1 by default:
-<<GOPCAExample,eval=TRUE,fig=TRUE,eps=FALSE,include=TRUE>>=
+<<GOPCAExample,eval=FALSE,fig=TRUE,eps=FALSE,include=TRUE>>=
 x=seq(min(PHI$features[,1]),max(PHI$features[,1]),length.out=100)
 y=seq(min(PHI$features[,2]),max(PHI$features[,2]),length.out=100)
 plot(x,y,xlab="principal component 1",ylab="principal component 2",type="n")
 text(PHI$features[,1],PHI$features[,2],labels=genes)
 @
 
-%\begin{figure}
-%\begin{center}
-%\includegraphics[width=0.5\textwidth]{GOPCAExample.pdf}
-%\caption{\label{Fig:PCAPlot}Embedding of the genes into the feature space spanned by the first 2 principal components}
-%\end{center}
-%\end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{GOPCAExample.pdf}
+\caption{\label{Fig:PCAPlot}Embedding of genes into feature space spanned by the first 2 principal components}
+\end{center}
+\end{figure}
 
 Finally, we can directly calculate the similarities of the genes to each other, this time using the Resnik's GO term similarity concept. These similarities may then be used to cluster genes with respect to their function:
 <<results=verbatim,eval=FALSE>>=
-sim = getGeneSimPrototypes(genes,prototypes=proto,similarityTerm="Resnik",verbose=FALSE)
-h=hclust(as.dist(1-sim$similarity),"ward")
+sim = getGeneSimPrototypes(genes[1:3],prototypes=proto,similarityTerm="Resnik",verbose=FALSE)
+h=hclust(as.dist(1-sim$similarity),"average")
 plot(h,xlab="")
 @
 
-This produces a hierarchical clustering of all genes using Ward's method (see Fig. \ref{Fig:GOCluster}).
+This produces a hierarchical clustering of all genes using average linkage clustering (see Fig. \ref{Fig:GOCluster}).
 
 \begin{figure}
 \begin{center}

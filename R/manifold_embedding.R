@@ -58,8 +58,8 @@ calc.diffusion.kernel = function(method="diffKernelLapl", m=7, normalization.met
 		invD = Diagonal(x=1/deg)
 		P = invD%*%W
 		I = Diagonal(ncol(P)) 
-		T = I - P
-		M = Matrix:::t(T)%*%(T)	
+		Tm = I - P
+		M = Matrix::t(Tm)%*%(Tm)	
 		lam = eigen(M, symmetric=TRUE, only.values=TRUE)
 		K = lam$values[1]*I - M
 		E = I - matrix(1,ncol=ncol(I), nrow=nrow(I))/ncol(I)

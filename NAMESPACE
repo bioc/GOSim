@@ -1,4 +1,4 @@
-useDynLib(GOSim,OAWrapper)
+useDynLib(GOSim,.registration=TRUE)
 importFrom(org.Hs.eg.db, org.Hs.egGO, org.Hs.egORGANISM)
 importFrom(cluster, silhouette)
 import(RBGL)
@@ -7,7 +7,9 @@ import(flexmix)
 import(Matrix)
 importFrom(corpcor, pseudoinverse)
 import(topGO)
-importFrom(Rcpp, evalCpp) 
+import(GO.db)
+import(AnnotationDbi)
+import(Rcpp, utils, annotate)
 
 export(
 getOffsprings,
