@@ -1,12 +1,12 @@
 Package: GOSim
-Version: 1.4.0
-Date: 2015-03-25
+Version: 1.4.1
+Date: 2015-04-02
 Title: Computation of functional similarities between GO terms and gene products; GO enrichment analysis
 Author: Holger Froehlich <frohlich@bit.uni-bonn.de>
 Maintainer: Holger Froehlich <frohlich@bit.uni-bonn.de>
 Depends: GO.db, annotate
 Enhances: igraph
-Imports: org.Hs.eg.db, AnnotationDbi, topGO, cluster, flexmix, RBGL, graph, Matrix, corpcor, Rcpp, utils
+Imports: org.Hs.eg.db, AnnotationDbi, topGO, cluster, flexmix, RBGL, graph, Matrix, corpcor, Rcpp
 LinkingTo: Rcpp
 NeedsCompilation: yes
 LazyLoad: Yes

@@ -9,7 +9,7 @@ importFrom(corpcor, pseudoinverse)
 import(topGO)
 import(GO.db)
 import(AnnotationDbi)
-import(Rcpp, utils, annotate)
+import(Rcpp, annotate)
 
 export(
 getOffsprings,
