@@ -43,7 +43,7 @@ calc.diffusion.kernel = function(method="diffKernelLapl", m=7, normalization.met
 	deg = rowSums(W)
 	W = Matrix(W, sparse=TRUE)	
 	D = Diagonal(x=deg)
-	if(method == "diffKernelgraphLapl")
+	if(method == "diffKernelLapl")
 		K = pseudoinverse(D - W)
 	else if(method == "diffKernelpower"){
 		invD_half = Diagonal(x=1/sqrt(deg))
