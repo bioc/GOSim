@@ -1,5 +1,5 @@
 Package: GOSim
-Version: 1.23.0
+Version: 1.24.0
 Date: 2015-04-02
 Title: Computation of functional similarities between GO terms and gene products; GO enrichment analysis
 Author: Holger Froehlich <frohlich@bit.uni-bonn.de>
