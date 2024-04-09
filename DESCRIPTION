@@ -1,5 +1,5 @@
 Package: GOSim
-Version: 1.41.0
+Version: 1.41.1
 Date: 2015-04-02
 Title: Computation of functional similarities between GO terms and gene products; GO enrichment analysis
 Author: Holger Froehlich <frohlich@bit.uni-bonn.de>
@@ -14,3 +14,4 @@ Description: This package implements several functions useful for
   computing similarities between GO terms and gene products based on their GO annotation. Moreover it allows for computing a GO enrichment analysis
 License: GPL (>= 2)
 biocViews: GO, Clustering, Software, Pathways
+PackageStatus: Deprecated
